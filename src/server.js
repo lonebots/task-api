@@ -1,8 +1,8 @@
 import express from 'express';
-import connectDB from './src/utils/connect.js'
-import networkLogs from './src/middleware/networklogger.middleware.js'
-import errorHandler from './src/middleware/errorhandle.middleware.js'
-import Router from './src/routes/index.js'
+import connectDB from './utils/connect.js'
+import networkLogs from './middleware/networklogger.middleware.js'
+import errorHandler from './middleware/errorhandle.middleware.js'
+import Router from './routes/index.js'
 import dotenv from 'dotenv'
 dotenv.config();
 
