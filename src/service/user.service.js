@@ -6,7 +6,7 @@ export const createUser = async (userData) => {
 }
 
 // find singel user 
-export const findSingleUser = async (userId) => {
+export const findUserById = async (userId) => {
     return await userModel.findById(userId);
 }
 
@@ -19,4 +19,5 @@ export const findAllUsers = async () => {
 export const findAndUpdateUser = async (userId, userData) => {
     return await userModel.findByIdAndUpdate(userId, userData)
 }
+
 
