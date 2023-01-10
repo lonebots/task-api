@@ -9,7 +9,8 @@
     "node": "^18.x"
   },
   "scripts": {
-    "start": "nodemon src/server.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "dependencies": {
     "argon": "^2.0.21",
