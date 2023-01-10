@@ -29,7 +29,7 @@ password : admin
 
 ## Protected Routes
 
-`Authorisation Header` recieved during login need to be passed in `Header` as `Bearer Token`
+`accesstoken` recieved during login need to be passed in `Authorisation Header` as `Bearer Token` for authentication.
 
 ### 1. Create User
 
