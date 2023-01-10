@@ -7,7 +7,7 @@ const Router = express.Router();
 
 // health check
 Router.route('/healthcheck').get((req, res) => res.status(200).send("server up and running"))
-Router.get('/', (req, res) => { res.status(200).json({ "success": true, "message": "Server succesfully started and running" }) })
+Router.get('/', (req, res) => { res.status(200).json({ "success": true, "message": "Server running, api documentation : https://github.com/lonebots/task-hr-centrol " }) })
 
 
 // user route
