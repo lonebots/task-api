@@ -1,5 +1,5 @@
 import asyncHandler from '../middleware/async.middleware.js'
-import { createUser, findAllUsers, findAndUpdateUser, findSingleUser } from '../service/user.service.js'
+import { createUser, findAllUsers, findAndUpdateUser, findUserById } from '../service/user.service.js'
 
 
 // create user
@@ -28,6 +28,7 @@ export const updateUserHandler = asyncHandler(async (req, res, next) => {
         //return next(new ErrorResponce('Error in creating the user ', 404));
         return next(new ErrorResponce("User not found", 404))
     }
+    user.save();
     return res.status(200).json({ success: true, data: user });
 })
 
@@ -49,7 +50,7 @@ export const getAllUsersHandler = asyncHandler(async (req, res, next) => {
 
 // getuser
 export const getSingleUserHandler = asyncHandler(async (req, res, next) => {
-    const user = await findSingleUser(req.params.id)
+    const user = await findUserById(req.params.id)
     if (!user) {
         //return next(new ErrorResponce('Error in creating the user ', 404));
         return next(new ErrorResponce("User not found", 404))
