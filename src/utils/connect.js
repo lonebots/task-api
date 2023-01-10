@@ -1,12 +1,13 @@
-const mongoose = require('mongoose');
-const logger = require('./logger')
+import mongoose from "mongoose";
+import dotenv from 'dotenv'
+dotenv.config();
+
 const dbUri = process.env.DB_URI;
 
-const connect = async () => {
+async function connect() {
     mongoose.set('strictQuery', false);
-    await mongoose.connect(dbUri,);
-    console.log("Db connected successfully");
+    mongoose.connect(dbUri);
+    console.log("Db connected");
 }
 
-module.exports = connect;
-
+export default connect;

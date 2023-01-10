@@ -1,16 +1,35 @@
-require("dotenv").config()
-const express = require('express')
-const mongoose = require('mongoose')
-const session = require('express-session')
-const connect = require('./utils/connect.js')
+import express from 'express';
+import connectDB from './utils/connect.js'
+import networkLogs from './middleware/networklogger.middleware.js'
+import errorHandler from './middleware/errorhandle.middleware.js'
+import Router from './routes/index.js'
+import dotenv from 'dotenv'
+dotenv.config();
 
-
-const app = express();
+const app = express(); //express app
 const PORT = process.env.PORT;
-connect()
-app.get('/healthcheck', (req, res) => res.send('hello world'))
+connectDB()   //database connection
 
+// parsing middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.listen(PORT, () => {
+//router 
+app.use(Router)
+
+// error handlers
+app.use(errorHandler) // error handling
+app.use(networkLogs) // network logs
+
+const server = app.listen(PORT, () => {
     console.log(`server started at http://localhost:${PORT}`)
+})
+
+//Handling unhandled promise rejections
+process.on('unhandledRejection', (error, promise) => {
+    console.log(`Error:${error.message}`);
+
+
+    //Close the server and exit process
+    server.close(() => { process.exit(1) })
 })
