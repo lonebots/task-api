@@ -1,5 +1,5 @@
 import express from 'express'
-import { createUserHandler, getAllUsersHandler, getSingleUserHandler, updateUserHandler } from '../controller/user.controller.js'
+import { createUserHandler, deleteUserHandler, getAllUsersHandler, getSingleUserHandler, updateUserHandler } from '../controller/user.controller.js'
 import { protect } from '../middleware/auth.middleware.js'
 
 
@@ -12,7 +12,7 @@ router.route('/user').post(protect, createUserHandler)
 router.route('/user/:id').patch(protect, updateUserHandler)
 
 // delete user 
-router.route('/user/:id').delete((req, res) => res.send("user deletion route"))
+router.route('/user/:id').delete(protect, deleteUserHandler)
 
 //get all user
 router.route('/users').get(protect, getAllUsersHandler)

@@ -21,3 +21,8 @@ export const findAndUpdateUser = async (userId, userData) => {
 }
 
 
+// delete user 
+export const deleteUserById = async (userId) => {
+    return await userModel.findByIdAndRemove(userId );
+}
+

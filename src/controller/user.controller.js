@@ -1,5 +1,6 @@
 import asyncHandler from '../middleware/async.middleware.js'
-import { createUser, findAllUsers, findAndUpdateUser, findUserById } from '../service/user.service.js'
+import { createUser, findAllUsers, findAndUpdateUser, findUserById, deleteUserById } from '../service/user.service.js'
+import ErrorResponce from '../utils/errorResponse.js'
 
 
 // create user
@@ -23,7 +24,7 @@ export const updateUserHandler = asyncHandler(async (req, res, next) => {
         password: req.body.password,
         image: req.body.image
     }
-    const user = await findAndUpdateUser(userId,updatedUserData);
+    const user = await findAndUpdateUser(userId, updatedUserData);
     if (!user) {
         //return next(new ErrorResponce('Error in creating the user ', 404));
         return next(new ErrorResponce("User not found", 404))
@@ -34,8 +35,14 @@ export const updateUserHandler = asyncHandler(async (req, res, next) => {
 
 // delete user 
 export const deleteUserHandler = asyncHandler(async (req, res, next) => {
+    const userId = req.params.id;
+    const result = await deleteUserById(userId);
 
+    if (!result) {
+        return next(new ErrorResponce("No user found to delete", 404))
+    }
 
+    return res.status(200).send({ success: true, data: result })
 })
 
 // getusers
