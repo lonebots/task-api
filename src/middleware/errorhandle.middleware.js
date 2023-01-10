@@ -1,7 +1,7 @@
 import ErrorResponce from '../utils/errorResponse.js'
 
 const errorHandler = (err, req, res, next) => {
-    console.log('error handling middleware')
+
     let error = { ...err }
 
     error.message = err.message;
