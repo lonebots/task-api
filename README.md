@@ -17,7 +17,7 @@ simple REST API implementation with following feature
 ```
 
 ```
-defaul user
+defaul admin credentials
 username : admin
 password : admin
 ```
